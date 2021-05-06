@@ -1,0 +1,5 @@
+node_modules/
+.vscode/
+deprecated/
+package-lock.json
+.env
