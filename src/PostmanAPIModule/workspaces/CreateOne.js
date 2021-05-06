@@ -20,7 +20,7 @@ const axios = require('axios').default;
                 'Content-Type': 'application/json'
             },
         }).then((res) => {
-            return res.workspace;
+            return res.data.workspace;
         });
     } catch (err) {
         console.error(err);
