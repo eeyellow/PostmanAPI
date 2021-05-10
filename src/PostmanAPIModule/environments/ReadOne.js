@@ -15,7 +15,7 @@ const axios = require('axios').default;
                 'X-Api-Key': global.APIKey
             },
         }).then((res) => {
-            return res.environment;
+            return res.data.environment;
         });
     } catch (err) {
         console.error(err);
