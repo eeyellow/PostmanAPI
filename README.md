@@ -75,3 +75,13 @@
     .
     git push
     ```
+
+* 同步的Workspace ： **`Team LinkChain`**
+
+---
+
+## **分支原則**
+
+* **`master`** ： 核心程式
+
+* **`develop`** ： 資料同步
