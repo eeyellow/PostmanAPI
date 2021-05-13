@@ -8,7 +8,7 @@
 
 ---
 
-## Prerequisites
+## **Prerequisites**
 
 1. 安裝 **`Postman`** 應用程式
 
@@ -30,7 +30,7 @@
 
     ![03](README/screenshot/03.png)
 
-* 產生成功，把 Key 複製起來，貼到 `.env` 中
+* 產生成功，把 Key 複製起來備用
 
     ![04](README/screenshot/04.png)
     ![05](README/screenshot/05.png)
@@ -86,15 +86,15 @@
 
 ---
 
-## 使用案例
+## **Use Cases**
 
-1. 第一次下載此Repository
+1. 第一次使用
 
     ```sh
     npm run import # 由檔案匯入至Postman
     ```
 
-2. 之前已經匯入過，同事通知你有新的API內容
+2. 之前已經匯入過，同事通知有新的API內容
 
     ```powershell
     git pull # 提取
@@ -125,15 +125,18 @@
 
 ---
 
-## **分支原則**
+## **Branch Strategy**
 
 * **`master`** ： 資料同步
 
 * **`develop`** ： 核心程式開發
 
+* 其他功能性分支使用 **`git flow`**
 ---
 
-## **計費與限制**
+## **Price and Limit**
+
+![06](README/screenshot/06.png)
 
 透過 **`Postman API`** 存取資源，每分鐘不可超過 **`60`** 次Request，且每個月不可超過 **`1000`** 次Request，因此要省點用XD。
 
@@ -151,6 +154,6 @@
 
 ---
 
-## 參考資料
+## **References**
 
 [https://www.postman.com/postman/workspace/postman-public-workspace](https://www.postman.com/postman/workspace/postman-public-workspace)
