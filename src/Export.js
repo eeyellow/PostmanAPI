@@ -23,11 +23,14 @@ async function Init() {
         let LCCollections = LCWorkspace.collections;
         for (let i = 0; i < LCCollections.length; i++) {
             let collection = await postman.Collections.ReadOne(LCCollections[i].id);
+            delete collection.info._postman_id;
+            collection.item.forEach(function (item) {
+                delete item.id;
+            });
+
             let filePath = `./Data/Collections/${collection.info.name}.json`;
-            try {
+            if (fs.existsSync(filePath)) { //若檔案存在
                 fs.unlinkSync(filePath) //刪除檔案
-            } catch(err) {
-                console.error(err)
             }
 
             //寫入檔案
@@ -42,11 +45,11 @@ async function Init() {
         let LCEnvironments = LCWorkspace.environments;
         for (let i = 0; i < LCEnvironments.length; i++) {
             let environment = await postman.Environments.ReadOne(LCEnvironments[i].id);
+            delete environment.id;
+
             let filePath = `./Data/Environments/${environment.name}.json`;
-            try {
+            if (fs.existsSync(filePath)) { //若檔案存在
                 fs.unlinkSync(filePath) //刪除檔案
-            } catch(err) {
-                console.error(err)
             }
 
             //寫入檔案
