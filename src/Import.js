@@ -39,18 +39,15 @@ async function Init() {
 
     for (let i = 0; i < CollectionFiles.length; i++){
         let collectionName = CollectionFiles[i];
+        let fileContent = fs.readFileSync(path.resolve(CollectionsDir, collectionName + '.json'));
         if (LCCollections == undefined || !LCCollections.map(e => e.name).includes(collectionName)) {
             //沒有資料，用Create
-            fs.readFile(path.resolve(CollectionsDir, collectionName + '.json'), async function (err, data) {
-                let createResult = await postman.Collections.CreateOne(targetWorkspaceID, JSON.parse(data.toString()));
-            });
+            let createResult = await postman.Collections.CreateOne(targetWorkspaceID, JSON.parse(fileContent.toString()));
         }
         else {
             //有資料，用Update
             let collectionID = LCCollections.find(e => e.name == collectionName).id;
-            fs.readFile(path.resolve(CollectionsDir, collectionName + '.json'), async function (err, data) {
-                let createResult = await postman.Collections.UpdateOne(collectionID, JSON.parse(data.toString()));
-            });
+            let updateResult = await postman.Collections.UpdateOne(collectionID, JSON.parse(fileContent.toString()));
         }
     }
     //#endregion ====== Collections ======
@@ -67,18 +64,15 @@ async function Init() {
 
     for (let i = 0; i < EnvironmentFiles.length; i++){
         let environmentName = EnvironmentFiles[i];
+        let fileContent = fs.readFileSync(path.resolve(EnvironmentsDir, environmentName + '.json'));
         if (LCEnvironments == undefined || !LCEnvironments.map(e => e.name).includes(environmentName)) {
             //沒有資料，用Create
-            fs.readFile(path.resolve(EnvironmentsDir, environmentName + '.json'), async function (err, data) {
-                let createResult = await postman.Environments.CreateOne(targetWorkspaceID, JSON.parse(data.toString()));
-            });
+            let createResult = await postman.Environments.CreateOne(targetWorkspaceID, JSON.parse(fileContent.toString()));
         }
         else {
             //有資料，用Update
             let environmentID = LCEnvironments.find(e => e.name == environmentName).id;
-            fs.readFile(path.resolve(EnvironmentsDir, environmentName + '.json'), async function (err, data) {
-                let createResult = await postman.Environments.UpdateOne(environmentID, JSON.parse(data.toString()));
-            });
+            let updateResult = await postman.Environments.UpdateOne(environmentID, JSON.parse(fileContent.toString()));
         }
     }
     //#endregion ====== Environments ======
