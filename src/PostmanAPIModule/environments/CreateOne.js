@@ -8,12 +8,18 @@ const axios = require('axios').default;
 const CreateOne = async (workspaceID, data) => {
     let url = `https://api.getpostman.com/environments?workspace=${workspaceID}`;
 
+    let updateData = {
+        name: data.name,
+        values: data.values,
+        isPublic: data.isPublic
+    };
+
     try {
         return await axios({
             url: url,
             method: 'POST',
             data: {
-                environment: data
+                environment: updateData
             },
             headers: {
                 'X-Api-Key': global.APIKey,

@@ -45,7 +45,11 @@ async function Init() {
         let LCEnvironments = LCWorkspace.environments;
         for (let i = 0; i < LCEnvironments.length; i++) {
             let environment = await postman.Environments.ReadOne(LCEnvironments[i].id);
-            delete environment.id;
+            environment = {
+                name: environment.name,
+                values: environment.values,
+                isPublic: environment.isPublic
+            };
 
             let filePath = `./Data/Environments/${environment.name}.json`;
             if (fs.existsSync(filePath)) { //若檔案存在

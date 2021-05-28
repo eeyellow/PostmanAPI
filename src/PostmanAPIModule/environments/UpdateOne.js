@@ -8,12 +8,18 @@ const axios = require('axios').default;
 const UpdateOne = async (environmentID, data) => {
     let url = `https://api.getpostman.com/environments/${environmentID}`;
 
+    let updateData = {
+        name: data.name,
+        values: data.values,
+        isPublic: data.isPublic
+    };
+
     try {
         return await axios({
             url: url,
             method: 'PUT',
             data: {
-                environment: data
+                environment: updateData
             },
             headers: {
                 'X-Api-Key': global.APIKey,
