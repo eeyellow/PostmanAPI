@@ -43,25 +43,27 @@ async function Init() {
 
         //匯出所有的Environments
         let LCEnvironments = LCWorkspace.environments;
-        for (let i = 0; i < LCEnvironments.length; i++) {
-            let environment = await postman.Environments.ReadOne(LCEnvironments[i].id);
-            environment = {
-                name: environment.name,
-                values: environment.values,
-                isPublic: environment.isPublic
-            };
-
-            let filePath = `./Data/Environments/${environment.name}.json`;
-            if (fs.existsSync(filePath)) { //若檔案存在
-                fs.unlinkSync(filePath) //刪除檔案
-            }
-
-            //寫入檔案
-            fs.writeFile(filePath, JSON.stringify(environment, null, 4), { flag: 'wx' }, function (err, data) {
-                if (err) {
-                    return console.log(err);
+        if(LCEnvironments !== undefined) {
+            for (let i = 0; i < LCEnvironments.length; i++) {
+                let environment = await postman.Environments.ReadOne(LCEnvironments[i].id);
+                environment = {
+                    name: environment.name,
+                    values: environment.values,
+                    isPublic: environment.isPublic
+                };
+    
+                let filePath = `./Data/Environments/${environment.name}.json`;
+                if (fs.existsSync(filePath)) { //若檔案存在
+                    fs.unlinkSync(filePath) //刪除檔案
                 }
-            });
+    
+                //寫入檔案
+                fs.writeFile(filePath, JSON.stringify(environment, null, 4), { flag: 'wx' }, function (err, data) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                });
+            }
         }
     }
 }
