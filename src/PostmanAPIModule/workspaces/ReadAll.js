@@ -17,7 +17,16 @@ const ReadAll = async () => {
             return res.data.workspaces;
         });
     } catch (err) {
-        console.error(err);
+        console.error(``)
+        console.error(`==============================`)
+        console.error(`Workspaces ReadAll Error !`)
+        console.error({
+            status: err.response.status,
+            statusText: err.response.statusText,
+        })
+        console.error("無法存取Workspaces，請檢查.env設定，確認APIKey是否過期。")
+        console.error(`==============================`)
+        console.error(``)
         return ""
     }
 }
