@@ -1,0 +1,19 @@
+{
+  "name": "postman-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "export": "node src/Export.js",
+    "import": "node src/Import.js",    
+    "ci-test": "newman run Data/Collections/專案.json --folder 可測試 --environment Data/Environments/03_測試機.json --reporters cli,junit --reporter-junit-export junit-report.xml"    
+  },
+  "author": "Ray Huang",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "dotenv": "^8.6.0",
+    "newman": "^5.3.0",
+    "newman-reporter-htmlextra": "^1.22.3"
+  }
+}
