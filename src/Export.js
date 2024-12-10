@@ -24,8 +24,28 @@ async function Init() {
         for (let i = 0; i < LCCollections.length; i++) {
             let collection = await postman.Collections.ReadOne(LCCollections[i].id);
             delete collection.info._postman_id;
+            delete collection.info.updatedAt;
+            delete collection.info.createdAt;
+            delete collection.info.lastUpdatedBy;
+            delete collection.info.uid;
+
             collection.item.forEach(function (item) {
-                delete item.id;
+                if (item.id) {
+                    delete item.id;
+                }
+                if (item.uid) {
+                    delete item.uid;
+                }
+                if (item.item) {
+                    item.item.forEach(function (subItem) {
+                        if (subItem.id) {
+                            delete subItem.id;
+                        }
+                        if (subItem.uid) {
+                            delete subItem.uid;
+                        }
+                    });
+                }
             });
 
             let filePath = `./Data/Collections/${collection.info.name}.json`;
